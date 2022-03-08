@@ -1,0 +1,33 @@
+NAME='git-filter-repo'
+VERSION=2.34.0
+RELEASE=1
+CATEGORY='Devel Python'
+SUMMARY='Quickly rewrite git repository history (filter-branch replacement)'
+DESCRIPTION="git filter-repo is a versatile tool for rewriting history, which includes
+capabilities not found anywhere else. It roughly falls into the same space of
+tool as git filter-branch but without the capitulation-inducing poor
+performance, with far more capabilities, and with a design that scales
+usability-wise beyond trivial rewriting cases."
+HOMEPAGE='https://github.com/newren/git-filter-repo'
+SRC_URI="https://github.com/newren/git-filter-repo/releases/download/v${VERSION}/${NAME}-${VERSION}.tar.xz"
+ARCH=noarch
+DIFF_EXCLUDES='git-filter-repo git_filter_repo.py'
+REQUIRES='git python3'
+
+src_compile() {
+	cd "${S}"
+	sed -i 's|^#!/usr/bin/env python3|#!/usr/bin/python3|' git-filter-repo
+}
+
+src_test() {
+	cd "${S}"
+	./t/run_tests
+}
+
+src_install() {
+	dobin "${S}/git-filter-repo"
+	doman "${S}/Documentation/man1/git-filter-repo.1"
+
+	docinto /git/html
+	dodoc "${S}/Documentation/html/git-filter-repo.html"
+}
