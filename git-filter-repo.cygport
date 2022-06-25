@@ -12,11 +12,13 @@ HOMEPAGE='https://github.com/newren/git-filter-repo'
 SRC_URI="https://github.com/newren/git-filter-repo/releases/download/v${VERSION}/${NAME}-${VERSION}.tar.xz"
 ARCH=noarch
 DIFF_EXCLUDES='git-filter-repo git_filter_repo.py'
+BUILD_REQUIRES='git python3'
 REQUIRES='git python3'
 
+PATCH_URI=git-2.35-update.patch
+
 src_compile() {
-	cd "${S}"
-	sed -i 's|^#!/usr/bin/env python3|#!/usr/bin/python3|' git-filter-repo
+	:
 }
 
 src_test() {
@@ -25,7 +27,9 @@ src_test() {
 }
 
 src_install() {
+	sed -i 's|^#!/usr/bin/env python3|#!/usr/bin/python3|' "${S}/git-filter-repo"
 	dobin "${S}/git-filter-repo"
+
 	doman "${S}/Documentation/man1/git-filter-repo.1"
 
 	docinto /git/html
