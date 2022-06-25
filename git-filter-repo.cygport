@@ -12,6 +12,7 @@ HOMEPAGE='https://github.com/newren/git-filter-repo'
 SRC_URI="https://github.com/newren/git-filter-repo/releases/download/v${VERSION}/${NAME}-${VERSION}.tar.xz"
 ARCH=noarch
 DIFF_EXCLUDES='git-filter-repo git_filter_repo.py'
+BUILD_REQUIRES='git python3'
 REQUIRES='git python3'
 
 src_compile() {
