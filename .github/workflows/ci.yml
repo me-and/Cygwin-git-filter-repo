@@ -12,7 +12,7 @@ jobs:
       - name: Install starting Cygwin packages
         uses: cygwin/cygwin-install-action@v2
         with:
-          packages: git cygport
+          packages: git cygport python3
         timeout-minutes: 10
       - name: Manually configure safe.directory
         run: git config --global --add safe.directory '*'
