@@ -1,0 +1,151 @@
+commit 838bdd19f6cb60b705e05a65e7c7f0cb87cf3d92
+Author: Stefano Rivera <stefano@rivera.za.net>
+Date:   Sun Mar 6 12:28:20 2022 -0400
+
+    Update expected test data for git 2.35
+    
+    Commit order from fast-export --first-parent has changed in git 2.35,
+    see https://github.com/git/git/commit/726a228dfb19fae8befa0f209436f8fae7919a58
+    
+    This will break the same tests on older git releases.
+    
+    Fixes: #344
+    Signed-off-by: Stefano Rivera <stefano@rivera.za.net>
+
+diff --git a/t/t9390/less-empty-keepme b/t/t9390/less-empty-keepme
+index b8acab9..1a7ba5c 100644
+--- a/t/t9390/less-empty-keepme
++++ b/t/t9390/less-empty-keepme
+@@ -2,33 +2,33 @@ feature done
+ reset refs/heads/master
+ commit refs/heads/master
+ mark :1
+-author Full Name <user@organization.tld> 1000020000 +0100
+-committer Full Name <user@organization.tld> 1000020000 +0100
+-data 2
+-C
+-
+-commit refs/heads/master
+-mark :2
+-author Full Name <user@organization.tld> 1000030000 +0100
+-committer Full Name <user@organization.tld> 1000030000 +0100
+-data 2
+-D
+-from :1
+-
+-reset refs/heads/master
+-commit refs/heads/master
+-mark :3
+ author Full Name <user@organization.tld> 1000000000 +0100
+ committer Full Name <user@organization.tld> 1000000000 +0100
+ data 2
+ A
+ 
+ commit refs/heads/master
+-mark :4
++mark :2
+ author Full Name <user@organization.tld> 1000010000 +0100
+ committer Full Name <user@organization.tld> 1000010000 +0100
+ data 2
+ B
++from :1
++
++reset refs/heads/master
++commit refs/heads/master
++mark :3
++author Full Name <user@organization.tld> 1000020000 +0100
++committer Full Name <user@organization.tld> 1000020000 +0100
++data 2
++C
++
++commit refs/heads/master
++mark :4
++author Full Name <user@organization.tld> 1000030000 +0100
++committer Full Name <user@organization.tld> 1000030000 +0100
++data 2
++D
+ from :3
+ 
+ blob
+@@ -42,8 +42,8 @@ author Full Name <user@organization.tld> 1000040000 +0100
+ committer Full Name <user@organization.tld> 1000040000 +0100
+ data 29
+ E: Merge commit 'D' into 'B'
+-from :4
+-merge :2
++from :2
++merge :4
+ M 100644 :5 keepme
+ 
+ commit refs/heads/master
+@@ -68,8 +68,8 @@ author Full Name <user@organization.tld> 1000050000 +0100
+ committer Full Name <user@organization.tld> 1000050000 +0100
+ data 29
+ F: Merge commit 'D' into 'B'
+-from :4
+-merge :2
++from :2
++merge :4
+ 
+ blob
+ mark :10
+diff --git a/t/t9390/more-empty-keepme b/t/t9390/more-empty-keepme
+index 902821d..f181c5a 100644
+--- a/t/t9390/more-empty-keepme
++++ b/t/t9390/more-empty-keepme
+@@ -2,38 +2,38 @@ feature done
+ blob
+ mark :1
+ data 10
+-keepme v2
++keepme v1
+ 
+ reset refs/heads/master
+ commit refs/heads/master
+ mark :2
++author Full Name <user@organization.tld> 1000040000 +0100
++committer Full Name <user@organization.tld> 1000040000 +0100
++data 29
++E: Merge commit 'D' into 'B'
++M 100644 :1 keepme
++
++blob
++mark :3
++data 10
++keepme v2
++
++reset refs/heads/master
++commit refs/heads/master
++mark :4
+ author Full Name <user@organization.tld> 1000080000 +0100
+ committer Full Name <user@organization.tld> 1000080000 +0100
+ data 2
+ I
+-M 100644 :1 keepme
+-
+-blob
+-mark :3
+-data 10
+-keepme v1
+-
+-reset refs/heads/master
+-commit refs/heads/master
+-mark :4
+-author Full Name <user@organization.tld> 1000040000 +0100
+-committer Full Name <user@organization.tld> 1000040000 +0100
+-data 29
+-E: Merge commit 'D' into 'B'
+ M 100644 :3 keepme
+ 
+ commit refs/heads/master
+ mark :5
+ author Full Name <user@organization.tld> 1000090000 +0100
+ committer Full Name <user@organization.tld> 1000090000 +0100
+ data 29
+ J: Merge commit 'I' into 'H'
+-from :4
+-merge :2
++from :2
++merge :4
+ 
+ done

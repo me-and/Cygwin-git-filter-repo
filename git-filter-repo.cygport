@@ -15,6 +15,8 @@ DIFF_EXCLUDES='git-filter-repo git_filter_repo.py'
 BUILD_REQUIRES='git python3'
 REQUIRES='git python3'
 
+PATCH_URI=git-2.35-update.patch
+
 src_compile() {
 	cd "${S}"
 	sed -i 's|^#!/usr/bin/env python3|#!/usr/bin/python3|' git-filter-repo
