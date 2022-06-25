@@ -1,3 +1,5 @@
+inherit python3
+
 NAME='git-filter-repo'
 VERSION=2.34.0
 RELEASE=1
@@ -13,7 +15,7 @@ SRC_URI="https://github.com/newren/git-filter-repo/releases/download/v${VERSION}
 ARCH=noarch
 DIFF_EXCLUDES='git-filter-repo git_filter_repo.py'
 BUILD_REQUIRES='git python3'
-REQUIRES='git python3'
+REQUIRES='git'
 
 PATCH_URI=git-2.35-update.patch
 
@@ -34,4 +36,14 @@ src_install() {
 
 	docinto /git/html
 	dodoc "${S}/Documentation/html/git-filter-repo.html"
+
+	# The official installation instructions want the Python module
+	# installed as a symlink to the script in the executable directory.
+	# That's a pain to do in cygport, seems a bit fragile in general on
+	# Cygwin given the possibility of users changing how Cygwin is
+	# implementing symlinks, and saves less than 200KB.  Just install the
+	# script as a duplicate.
+	dodir "$PYTHON3_SITELIB"
+	insinto "$PYTHON3_SITELIB"
+	newins "${S}/git-filter-repo" git-filter-repo.py
 }
