@@ -18,8 +18,7 @@ REQUIRES='git python3'
 PATCH_URI=git-2.35-update.patch
 
 src_compile() {
-	cd "${S}"
-	sed -i 's|^#!/usr/bin/env python3|#!/usr/bin/python3|' git-filter-repo
+	:
 }
 
 src_test() {
@@ -28,7 +27,9 @@ src_test() {
 }
 
 src_install() {
+	sed -i 's|^#!/usr/bin/env python3|#!/usr/bin/python3|' "${S}/git-filter-repo"
 	dobin "${S}/git-filter-repo"
+
 	doman "${S}/Documentation/man1/git-filter-repo.1"
 
 	docinto /git/html
