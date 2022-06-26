@@ -45,5 +45,5 @@ src_install() {
 	# script as a duplicate.
 	dodir "$PYTHON3_SITELIB"
 	insinto "$PYTHON3_SITELIB"
-	newins "${S}/git-filter-repo" git-filter-repo.py
+	newins "${S}/git-filter-repo" git_filter_repo.py
 }
