@@ -20,6 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
+          fetch-depth: 0  # Needed to be able to push to the Cygwin repositories
           set-safe-directory: false  # actions/checkout otherwise tries to use the wrong config file, per actions/checkout#767
         timeout-minutes: 1
       - name: Load variables from the cygport file
