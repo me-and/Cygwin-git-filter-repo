@@ -11,6 +11,7 @@ tool as git filter-branch but without the capitulation-inducing poor
 performance, with far more capabilities, and with a design that scales
 usability-wise beyond trivial rewriting cases."
 HOMEPAGE='https://github.com/newren/git-filter-repo'
+LICENSE='(MIT OR LicenseRef-inherit-git OR LicenseRef-inherit-libgit2) AND (MIT OR LicenseRef-inherit-git OR LicenseRef-inherit-libgit2 OR LicenseRef-inherit-libgit2-examples) AND GPL-2.0-only'
 SRC_URI="https://github.com/newren/git-filter-repo/releases/download/v${VERSION}/${NAME}-${VERSION}.tar.xz"
 ARCH=noarch
 DIFF_EXCLUDES='git-filter-repo git_filter_repo.py'
