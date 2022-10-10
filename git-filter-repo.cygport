@@ -1,7 +1,7 @@
 inherit python3
 
 NAME='git-filter-repo'
-VERSION=2.34.0
+VERSION=2.38.0
 RELEASE=1
 CATEGORY='Devel Python'
 SUMMARY='Quickly rewrite git repository history (filter-branch replacement)'
