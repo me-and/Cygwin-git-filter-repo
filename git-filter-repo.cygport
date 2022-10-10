@@ -17,8 +17,6 @@ DIFF_EXCLUDES='git-filter-repo git_filter_repo.py'
 BUILD_REQUIRES='git python3'
 REQUIRES='git'
 
-PATCH_URI=git-2.35-update.patch
-
 src_compile() {
 	:
 }
