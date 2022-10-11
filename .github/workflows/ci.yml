@@ -41,7 +41,7 @@ jobs:
         timeout-minutes: 5
       - name: Store Cygwin logs
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: cygwin-logs
           path: 'C:\cygwin\var\log\'
@@ -108,7 +108,7 @@ jobs:
         timeout-minutes: 10
       - name: Store build results
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: build-results
           path: git-filter-repo.txz
